@@ -1,0 +1,42 @@
+---
+import { services } from "../data/content";
+---
+
+<section id="servicios" class="relative border-y" style="background:#EEF0F3; border-color:#E5E7EB;">
+  <div class="max-w-[1280px] mx-auto px-6 lg:px-11 py-[90px] lg:py-[120px]">
+    <div data-reveal class="max-w-[720px] mb-[54px]">
+      <span class="inline-flex items-center gap-[9px] font-body text-[12.5px] font-bold tracking-[1.5px]" style="color:#1D3F72;">
+        SERVICIOS DE OUTSOURCING
+      </span>
+      <h2 class="mt-[18px] mb-0 font-display font-extrabold text-[34px] lg:text-[54px] leading-[1.05] tracking-[-1.8px] text-ink">
+        Una operación administrativa completa, <span class="italic" style="color:#C8D72B;">delegada.</span>
+      </h2>
+    </div>
+
+    <div style="border-top:1px solid #E5E7EB;">
+      {
+        services.map((s) => (
+          <div
+            data-reveal
+            class="srow grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-[14px] lg:gap-[30px] items-center py-[26px] lg:py-[34px] px-[6px] lg:px-6 cursor-default"
+            style="border-bottom:1px solid #E5E7EB; transition:background .3s;"
+          >
+            <div>
+              <div class="stitle font-display text-[23px] lg:text-[28px] font-bold text-ink" style="transition:transform .35s cubic-bezier(.2,.7,.2,1);">
+                {s.title}
+              </div>
+              <div class="text-[15px] mt-2 max-w-[640px] leading-[1.6] font-medium" style="color:#1A1C22;">
+                {s.desc}
+              </div>
+            </div>
+            <div
+              class="sicon hidden lg:flex w-[60px] h-[60px] rounded-2xl items-center justify-center text-white"
+              style="background:#1D3F72; opacity:1; transform:translateX(0); transition:opacity .35s, transform .35s, background .35s;"
+              set:html={s.icon}
+            />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

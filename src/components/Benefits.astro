@@ -1,0 +1,42 @@
+---
+import { beneficios } from "../data/content";
+---
+
+<section class="relative overflow-hidden bg-ink">
+  <div
+    class="mono-v absolute left-[-80px] bottom-[-180px] z-0 font-display font-extrabold leading-[0.7] text-white select-none pointer-events-none"
+    style="font-size:520px; opacity:0.03;"
+  >
+    V
+  </div>
+  <div class="relative z-[2] max-w-[1280px] mx-auto px-6 lg:px-11 py-[90px] lg:py-[120px]">
+    <div data-reveal class="max-w-[720px] mb-[56px]">
+      <span class="inline-flex items-center gap-[9px] font-body text-[12.5px] font-bold tracking-[1.5px]" style="color:#C8D72B;">
+        BENEFICIOS
+      </span>
+      <h2 class="mt-[18px] mb-0 font-display font-extrabold text-[34px] lg:text-[54px] leading-[1.05] tracking-[-1.8px] text-white">
+        Lo que ganas al <span class="italic" style="color:#C8D72B;">delegar</span> en Validum
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-[18px]">
+      {
+        beneficios.map((b, i) => (
+          <div data-reveal class="bcard relative p-[30px] px-6 rounded-[20px] bg-white/[0.05] border border-white/[0.12] overflow-hidden">
+            <!-- bottom gold line on hover (via CSS) -->
+            <div class="bcard-line absolute bottom-0 left-0 right-0 h-[2px]"
+              style="background:linear-gradient(90deg,transparent,#C8D72B,transparent); transform:scaleX(0); transition:transform 0.4s cubic-bezier(.2,.7,.2,1); transform-origin:center;">
+            </div>
+            <div
+              class="w-[50px] h-[50px] rounded-[13px] grid place-items-center mb-[22px]"
+              style="background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.25); color:#fff; transition:background .3s, border-color .3s;"
+              set:html={b.icon}
+            />
+            <div class="font-display text-[16.5px] font-bold text-white leading-[1.32]">{b.title}</div>
+            <div class="text-[13.5px] mt-[10px] leading-[1.6] font-medium" style="color:rgba(255,255,255,0.6);">{b.desc}</div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,64 @@
+---
+import { about } from "../data/content";
+---
+
+<section id="nosotros" class="relative max-w-[1280px] mx-auto px-6 lg:px-11 py-[90px] lg:py-[130px] bg-white">
+  <div class="two-col grid grid-cols-1 lg:grid-cols-[0.92fr_1.08fr] gap-12 lg:gap-[74px] items-center">
+    <!-- image -->
+    <div data-reveal class="relative">
+      <div class="absolute left-[-20px] top-[-20px] w-[120px] h-[120px] rounded-[18px] z-0" style="background:#E5E7EB;"></div>
+      <div
+        class="relative z-[1] overflow-hidden h-[420px] lg:h-[540px]"
+        style="clip-path:polygon(0 0,100% 0,100% 83%,87% 100%,0 100%); box-shadow:0 44px 90px -42px rgba(27,42,49,0.4);"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=900&h=1080&q=80"
+          alt="Equipo de trabajo Validum"
+          loading="lazy"
+          class="w-full h-full object-cover block"
+        />
+      </div>
+      <div
+        class="absolute right-[-22px] bottom-[-22px] z-[2] w-[172px] rounded-[20px] bg-ink p-[22px]"
+        style="box-shadow:0 30px 60px -28px rgba(27,42,49,0.6);"
+      >
+        <div class="font-display text-[14px] font-bold text-white leading-[1.35]">
+          Aliado estratégico de tu operación
+        </div>
+        <div class="w-[30px] h-1 rounded bg-blue mt-[14px]"></div>
+      </div>
+    </div>
+
+    <!-- copy -->
+    <div data-reveal>
+      <span class="inline-flex items-center gap-[9px] font-body text-[12.5px] font-bold tracking-[1.5px]" style="color:#1D3F72;">
+        QUIÉNES SOMOS
+      </span>
+      <h2 class="mt-6 mb-0 font-display font-extrabold text-[34px] lg:text-[50px] leading-[1.04] tracking-[-1.5px] text-ink">
+        Especialistas en <span class="italic" style="color:#C8D72B;">outsourcing</span> administrativo
+      </h2>
+      <p class="mt-7 text-[17.5px] leading-[1.75] font-medium" style="color:#4B5563;">
+        Grupo Empresarial Validum S.A.S. somos una compañía dedicada a la
+        <b class="font-bold text-ink">gestión integral de la seguridad social</b>, la administración
+        de nómina y la implementación de soluciones electrónicas.
+      </p>
+      <p class="mt-[18px] text-[17.5px] leading-[1.75] font-medium" style="color:#4B5563;">
+        Nuestro propósito es ofrecer un servicio <b class="font-bold text-ink">confiable y eficiente</b>
+        a empresas de todos los tamaños y sectores, así como a independientes con empleados, garantizando
+        cumplimiento normativo y optimización de recursos.
+      </p>
+      <div class="flex gap-3 mt-[34px] flex-wrap">
+        {
+          about.tags.map((t, i) => (
+            <span
+              class="atag py-[10px] px-[18px] rounded-full bg-white text-[13.5px] font-semibold border-[1.5px]"
+              style={`border-color:#E5E7EB; color:#1A1C22; animation-delay:${i * 100}ms;`}
+            >
+              {t}
+            </span>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

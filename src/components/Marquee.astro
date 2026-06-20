@@ -1,0 +1,42 @@
+---
+import { marquee } from "../data/content";
+const loop = [...marquee, ...marquee];
+---
+
+<div class="mqwrap relative z-[3] bg-paper overflow-hidden py-5 border-y" style="border-color:#E5E7EB;">
+  <div
+    class="absolute left-0 top-0 bottom-0 w-[130px] z-[2] pointer-events-none"
+    style="background:linear-gradient(90deg,#F8F7F4,transparent);"
+  >
+  </div>
+  <div
+    class="absolute right-0 top-0 bottom-0 w-[130px] z-[2] pointer-events-none"
+    style="background:linear-gradient(270deg,#F8F7F4,transparent);"
+  >
+  </div>
+  <div class="mqtrack flex w-max gap-[14px] px-[7px]">
+    {
+      loop.map((m) => (
+        <span
+          class="mqchip inline-flex items-center gap-[11px] py-[11px] px-[22px] rounded-full whitespace-nowrap cursor-default border"
+          style="background:#fff; border-color:#E5E7EB;"
+        >
+          <span class="mqic inline-flex" style="color:#1D3F72;" set:html={m.icon} />
+          <span class="mqlabel font-display text-[16px] font-semibold" style="color:#1A1C22;">
+            {m.label}
+          </span>
+        </span>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  const wrap = document.querySelector('.mqwrap');
+  const track = wrap?.querySelector<HTMLElement>('.mqtrack');
+  if (wrap && track) {
+    new IntersectionObserver((entries) => {
+      track.style.animationPlayState = entries[0].isIntersecting ? 'running' : 'paused';
+    }, { threshold: 0 }).observe(wrap);
+  }
+</script>

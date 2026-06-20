@@ -1,0 +1,324 @@
+@import "tailwindcss";
+
+/* ============================================================
+   VALIDUM — Design tokens (art direction: claro institucional)
+   ============================================================ */
+@theme {
+  --color-ink: #1A1C22;        /* main text, near-black warm */
+  --color-ink-2: #2D3039;      /* dark text alt */
+  --color-ink-3: #404552;      /* mid dark */
+  --color-blue: #1D3F72;       /* signature navy — institutional */
+  --color-blue-soft: #B8CCE4;
+  --color-slate: #6B7280;      /* neutral gray mid */
+  --color-slate-2: #4B5563;    /* body text on light */
+  --color-mist: #9CA3AF;       /* muted text */
+  --color-mist-2: #D1D5DB;     /* very light muted */
+  --color-paper: #F8F7F4;      /* warm bone — main bg */
+  --color-line: #E5E7EB;       /* borders */
+  --color-line-2: #D1D5DB;
+
+  --font-display: "Bricolage Grotesque", sans-serif;
+  --font-body: "Hanken Grotesque", sans-serif;
+
+  --ease-out-soft: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  --z-canvas: 1;
+  --z-content: 2;
+  --z-marquee: 3;
+  --z-nav: 120;
+  --z-fab: 130;
+  --z-grain: 200;
+}
+
+/* ---------- base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--color-paper);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 { text-wrap: balance; }
+p { text-wrap: pretty; }
+
+/* reduce 300ms tap delay on touch devices */
+a,
+button,
+input,
+textarea,
+[data-scroll] {
+  touch-action: manipulation;
+}
+
+::selection {
+  background: var(--color-blue);
+  color: #fff;
+}
+
+/* ---------- visible focus ring (a11y) ---------- */
+:focus-visible {
+  outline: 3px solid var(--color-blue);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+/* on dark inputs, keep the ring legible against the field border */
+input:focus-visible,
+textarea:focus-visible {
+  outline-offset: 0;
+  border-color: var(--color-blue);
+}
+
+/* ---------- keyframes ---------- */
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-16px); }
+}
+@keyframes pulseDot {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(29, 63, 114, 0.5); }
+  50%      { box-shadow: 0 0 0 9px rgba(29, 63, 114, 0); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes auroraShift {
+  0%   { transform: translate3d(-4%, -2%, 0) scale(1.05); }
+  50%  { transform: translate3d(4%, 3%, 0) scale(1.15); }
+  100% { transform: translate3d(-4%, -2%, 0) scale(1.05); }
+}
+
+/* ---------- reveal (GSAP toggles .in as fallback) ---------- */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(42px);
+  transition:
+    opacity 0.85s var(--ease-out-soft),
+    transform 0.85s var(--ease-out-soft);
+}
+[data-reveal].in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- grain overlay ---------- */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-grain);
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* highlighter underline */
+.hl {
+  background: linear-gradient(transparent 62%, rgba(29, 63, 114, 0.2) 0);
+  padding: 0 2px;
+}
+
+/* ---------- service rows ---------- */
+.srow:hover .snum   { color: var(--color-blue) !important; }
+.srow:hover .stitle { transform: translateX(16px) !important; }
+.srow:hover .sicon  { opacity: 1 !important; transform: translateX(0) !important; background: var(--color-blue) !important; }
+.srow:hover         { background: linear-gradient(90deg, rgba(92, 126, 143, 0.10), transparent) !important; }
+
+/* ---------- marquee ---------- */
+.mqtrack { animation: marquee 30s linear infinite; }
+.mqwrap:hover .mqtrack { animation-play-state: paused; }
+.mqchip { transition: transform 0.3s var(--ease-out-soft), background 0.3s, border-color 0.3s, color 0.3s; }
+.mqchip:hover { transform: translateY(-5px); background: var(--color-blue) !important; border-color: var(--color-blue) !important; }
+.mqchip:hover .mqlabel { color: var(--color-ink) !important; }
+.mqchip:hover .mqic    { color: var(--color-ink) !important; }
+.mqic svg { width: 17px; height: 17px; }
+
+/* ---------- cards ---------- */
+.vcard { transition: transform 0.35s var(--ease-out-soft), border-color 0.35s, box-shadow 0.35s, background 0.35s; }
+.vcard:hover { transform: translateY(-6px); border-color: var(--color-blue) !important; box-shadow: 0 30px 60px -30px rgba(27, 42, 49, 0.45) !important; }
+.vcard:hover .vic { background: var(--color-blue) !important; color: var(--color-ink) !important; border-color: var(--color-blue) !important; }
+
+.pcard { transition: transform 0.35s var(--ease-out-soft), box-shadow 0.35s; }
+.pcard:hover { transform: translateY(-6px); box-shadow: 0 36px 70px -34px rgba(27, 42, 49, 0.5) !important; }
+.pcard:hover .pimg { transform: scale(1.06); }
+.pimg { transition: transform 0.6s var(--ease-out-soft); }
+
+.bcard { transition: background 0.3s, transform 0.3s, border-color 0.3s, box-shadow 0.3s; }
+.bcard:hover { background: rgba(200,215,43,0.06); border-color: rgba(200,215,43,0.3); transform: translateY(-6px); box-shadow: 0 24px 48px -20px rgba(0,0,0,0.5); }
+.bcard:hover .bcard-line { transform: scaleX(1) !important; }
+.pcard:hover .pimg-overlay { opacity: 1 !important; }
+
+/* ---------- nav links ---------- */
+.navlink {
+  position: relative;
+  color: var(--color-slate-2);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s;
+  padding: 11px 4px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.navlink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 2px;
+  background: var(--color-blue);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease-out-soft);
+}
+.navlink:hover { color: var(--color-blue); }
+.navlink:hover::after,
+.navlink[data-active="true"]::after { transform: scaleX(1); }
+.navlink[data-active="true"] { color: var(--color-blue); }
+
+/* ---------- buttons ---------- */
+.btn-blue { transition: transform 0.25s, box-shadow 0.25s, background 0.25s; }
+.btn-blue:hover { transform: translateY(-3px); box-shadow: 0 22px 44px -16px rgba(29, 63, 114, 0.5); }
+.btn-ghost { transition: background 0.25s, border-color 0.25s; }
+.btn-ghost:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.5); }
+
+/* magnetic wrapper resets transform smoothly */
+.magnetic { transition: transform 0.35s var(--ease-out-soft); }
+
+/* ---------- WhatsApp FAB ---------- */
+.wa { animation: pulseDot 2.4s ease-out infinite; transition: transform 0.25s; }
+.wa:hover { transform: scale(1.08); }
+
+/* aurora blob behind hero */
+.aurora {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(70px);
+  opacity: 0.5;
+  animation: auroraShift 18s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  [data-reveal] { opacity: 1 !important; transform: none !important; }
+}
+
+/* ---------- service gold bar ---------- */
+.srow { position: relative; }
+.srow::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 22%; bottom: 22%;
+  width: 3px;
+  background: #C8D72B;
+  border-radius: 2px;
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 0.35s var(--ease-out-soft);
+}
+.srow:hover::before { transform: scaleY(1); }
+
+/* ---------- floating labels ---------- */
+.fl-wrap { position: relative; }
+.fl-input {
+  padding: 26px 18px 10px !important;
+  height: 60px;
+}
+.fl-input--area {
+  height: auto !important;
+  padding-top: 30px !important;
+  padding-bottom: 14px !important;
+  resize: none;
+}
+.fl-label {
+  position: absolute;
+  left: 18px;
+  top: 30px; /* fixed = half of 60px input; never animated */
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: rgba(255,255,255,0.4);
+  transition: transform 0.2s ease, font-size 0.2s ease, color 0.2s ease;
+  pointer-events: none;
+  font-family: var(--font-body);
+  font-weight: 500;
+}
+.fl-label--area {
+  top: 18px;
+  transform: none;
+}
+.fl-input:focus ~ .fl-label,
+.fl-input:not(:placeholder-shown) ~ .fl-label {
+  transform: translateY(calc(-50% - 12px));
+  font-size: 10.5px;
+  color: #B8CCE4;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+.fl-input--area:focus ~ .fl-label--area,
+.fl-input--area:not(:placeholder-shown) ~ .fl-label--area {
+  transform: translateY(-8px);
+  font-size: 10.5px;
+  color: #B8CCE4;
+  font-weight: 700;
+}
+
+/* ---------- about tags ---------- */
+@keyframes tagIn {
+  from { opacity: 0; transform: translateY(12px) scale(0.94); }
+  to   { opacity: 1; transform: none; }
+}
+.atag {
+  opacity: 0;
+  animation: tagIn 0.5s var(--ease-out-soft) forwards paused;
+  transition: background 0.25s, color 0.25s, border-color 0.25s, transform 0.25s var(--ease-out-soft), box-shadow 0.25s;
+  cursor: default;
+}
+[data-reveal].in .atag {
+  animation-play-state: running;
+}
+.atag:hover {
+  background: var(--color-blue) !important;
+  color: #fff !important;
+  border-color: var(--color-blue) !important;
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 10px 28px -10px rgba(29, 63, 114, 0.4);
+}
+
+/* ---------- keymessage forced white ---------- */
+.keymsg-section .keymsg-h2,
+.keymsg-section .keymsg-sub {
+  color: #fff !important;
+}
+.keymsg-section .keymsg-sub { opacity: 1; }

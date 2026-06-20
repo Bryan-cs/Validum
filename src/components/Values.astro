@@ -1,0 +1,34 @@
+---
+import { valores } from "../data/content";
+---
+
+<section class="relative max-w-[1280px] mx-auto px-6 lg:px-11 py-[90px] lg:py-[130px] bg-white">
+  <div data-reveal class="max-w-[720px] mb-[58px]">
+    <span class="inline-flex items-center gap-[9px] font-body text-[12.5px] font-bold tracking-[1.5px]" style="color:#1D3F72;">
+      NUESTRO VALOR DIFERENCIAL
+    </span>
+    <h2 class="mt-[18px] mb-0 font-display font-extrabold text-[34px] lg:text-[54px] leading-[1.05] tracking-[-1.8px] text-ink">
+      Por qué las empresas <span class="italic" style="color:#C8D72B;">confían</span> en Validum
+    </h2>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[22px]">
+    {
+      valores.map((v) => (
+        <div
+          data-reveal
+          class="vcard relative p-9 rounded-[22px] bg-white border-[1.5px] overflow-hidden"
+          style="border-color:#E5E7EB; box-shadow:0 18px 40px -32px rgba(27,42,49,0.25);"
+        >
+          <div
+            class="vic w-14 h-14 rounded-[15px] grid place-items-center mb-6 border"
+            style="background:rgba(29,63,114,0.08); border-color:rgba(29,63,114,0.18); color:#1D3F72; transition:background .35s, color .35s, border-color .35s;"
+            set:html={v.icon}
+          />
+          <div class="font-display text-[21px] font-bold text-ink leading-[1.22]">{v.title}</div>
+          <div class="text-[14.5px] mt-[13px] leading-[1.65] font-medium" style="color:#1A1C22;">{v.desc}</div>
+        </div>
+      ))
+    }
+  </div>
+</section>

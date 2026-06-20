@@ -1,0 +1,133 @@
+---
+import { nav } from "../data/content";
+---
+
+<header class="fixed inset-x-0 z-[120] flex justify-center px-[18px]" style="top: calc(18px + env(safe-area-inset-top, 0px));">
+  <div
+    class="flex items-center justify-between gap-8 w-full max-w-[1180px] py-[11px] pl-[22px] pr-3 rounded-full border"
+    style="background:rgba(248,247,244,0.92); backdrop-filter:blur(16px); border-color:rgba(26,28,34,0.1); box-shadow:0 4px 24px -8px rgba(29,63,114,0.12);"
+  >
+    <!-- Brand -->
+    <a href="#inicio" data-scroll="inicio" class="flex items-center gap-2 cursor-pointer">
+      <img
+        src="/logo-validum.png"
+        alt="Validum Grupo Empresarial"
+        class="h-[52px] w-auto object-contain"
+      />
+    </a>
+
+    <!-- Links (desktop) -->
+    <nav class="nav-links hidden lg:flex items-center gap-[30px]">
+      {
+        nav.map((item) => (
+          <a href={`#${item.id}`} data-scroll={item.id} class="navlink">
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <!-- CTA (desktop) -->
+      <a
+        href="#contacto"
+        data-scroll="contacto"
+        class="nav-cta btn-blue magnetic hidden sm:inline-block border-none cursor-pointer py-3 px-6 rounded-full bg-blue text-white font-body font-bold text-[14px] no-underline"
+      >
+        Contáctanos
+      </a>
+
+      <!-- Hamburger (mobile only) -->
+      <button
+        id="nav-toggle"
+        class="lg:hidden w-[44px] h-[44px] flex flex-col items-center justify-center gap-[5px] rounded-full cursor-pointer border-none"
+        style="background:transparent;"
+        aria-label="Menú"
+        aria-expanded="false"
+      >
+        <span class="ham-line block w-[22px] h-[2px] rounded-full transition-all duration-300" style="background:#1A1C22;"></span>
+        <span class="ham-line block w-[22px] h-[2px] rounded-full transition-all duration-300" style="background:#1A1C22;"></span>
+        <span class="ham-line block w-[16px] h-[2px] rounded-full transition-all duration-300 self-end" style="background:#1A1C22;"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu dropdown -->
+  <div
+    id="nav-mobile"
+    class="absolute top-[calc(100%+8px)] left-[18px] right-[18px] rounded-[22px] border overflow-hidden pointer-events-none"
+    style="background:rgba(248,247,244,0.97); backdrop-filter:blur(20px); border-color:rgba(26,28,34,0.1); box-shadow:0 8px 32px -8px rgba(29,63,114,0.18); opacity:0; transform:translateY(-10px) scale(0.97); transition:opacity 0.25s cubic-bezier(.2,.7,.2,1), transform 0.25s cubic-bezier(.2,.7,.2,1);"
+  >
+    <nav class="flex flex-col p-4 gap-1">
+      {
+        nav.map((item) => (
+          <a
+            href={`#${item.id}`}
+            data-scroll={item.id}
+            data-mobile-link
+            class="font-body font-semibold text-[15px] px-4 py-3 rounded-[12px] no-underline transition-colors duration-200"
+            style="color:#1A1C22;"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <a
+        href="#contacto"
+        data-scroll="contacto"
+        data-mobile-link
+        class="mt-2 text-center py-3 px-6 rounded-full bg-blue text-white font-body font-bold text-[14px] no-underline"
+      >
+        Contáctanos
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const menu = document.getElementById('nav-mobile');
+  const lines = toggle?.querySelectorAll('.ham-line');
+
+  function openMenu() {
+    if (!menu) return;
+    menu.style.opacity = '1';
+    menu.style.transform = 'translateY(0) scale(1)';
+    menu.classList.remove('pointer-events-none');
+    toggle?.setAttribute('aria-expanded', 'true');
+    if (lines) {
+      lines[0]?.classList.add('rotate-45', 'translate-y-[7px]');
+      lines[1]?.classList.add('opacity-0');
+      lines[2]?.classList.add('-rotate-45', '-translate-y-[7px]', 'w-[22px]');
+    }
+  }
+
+  function closeMenu() {
+    if (!menu) return;
+    menu.style.opacity = '0';
+    menu.style.transform = 'translateY(-10px) scale(0.97)';
+    menu.classList.add('pointer-events-none');
+    toggle?.setAttribute('aria-expanded', 'false');
+    if (lines) {
+      lines[0]?.classList.remove('rotate-45', 'translate-y-[7px]');
+      lines[1]?.classList.remove('opacity-0');
+      lines[2]?.classList.remove('-rotate-45', '-translate-y-[7px]', 'w-[22px]');
+    }
+  }
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = menu?.classList.contains('pointer-events-none') === false;
+    isOpen ? closeMenu() : openMenu();
+  });
+
+  document.querySelectorAll('[data-mobile-link]').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') {
+      closeMenu();
+      toggle?.focus();
+    }
+  });
+</script>

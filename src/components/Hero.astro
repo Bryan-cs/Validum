@@ -1,0 +1,166 @@
+---
+import { heroStats, heroChips } from "../data/content";
+---
+
+<section
+  id="inicio"
+  data-hero
+  class="relative w-full min-h-dvh overflow-hidden flex items-center bg-paper"
+>
+  <!-- subtle right panel -->
+  <div
+    class="absolute right-0 top-0 w-[52%] h-full z-0 pointer-events-none"
+    style="background:#EEF0F3; clip-path:polygon(16% 0,100% 0,100% 100%,0% 100%);"
+  ></div>
+
+  <!-- giant V monogram -->
+  <div
+    class="mono-v absolute right-[-40px] top-1/2 -translate-y-1/2 z-0 font-display font-extrabold leading-[0.7] select-none pointer-events-none"
+    style="font-size:660px; opacity:0.05; color:#1D3F72;"
+  >
+    V
+  </div>
+
+  <!-- dot field — navy dots on light -->
+  <div
+    class="absolute inset-0 z-0"
+    style="background-image:radial-gradient(rgba(29,63,114,0.07) 1px, transparent 1px); background-size:40px 40px; mask-image:radial-gradient(circle at 30% 45%, #000 0%, transparent 72%); -webkit-mask-image:radial-gradient(circle at 30% 45%, #000 0%, transparent 72%);"
+  >
+  </div>
+
+  <div
+    class="hero-grid relative z-[2] max-w-[1280px] mx-auto w-full grid grid-cols-1 lg:grid-cols-[1.12fr_0.88fr] gap-12 lg:gap-[54px] items-center px-6 lg:px-11 pt-[120px] lg:pt-[130px] pb-[70px] lg:pb-20"
+  >
+    <!-- copy -->
+    <div>
+      <h1
+        class="hero-h1 m-0 font-display font-extrabold text-[44px] sm:text-[60px] lg:text-[96px] leading-[0.96] tracking-[-3px] text-ink"
+        data-hero-title
+      >
+        Tu nómina y<br />seguridad social,<br />
+        <span class="italic font-bold" style="color:#C8D72B;">en manos expertas.</span>
+      </h1>
+
+      <p class="mt-[30px] max-w-[466px] text-[17px] leading-[1.7] font-medium" style="color:#1A1C22;">
+        Gestionamos integralmente tus procesos administrativos —afiliaciones, novedades,
+        aportes y documentos electrónicos— para que tú te concentres en hacer crecer tu negocio.
+      </p>
+
+      <div class="flex items-center gap-5 mt-10 flex-wrap">
+        <a
+          href="#servicios"
+          data-scroll="servicios"
+          class="btn-blue magnetic inline-flex items-center gap-3 cursor-pointer py-[18px] px-8 rounded-[14px] bg-blue text-white font-body font-bold text-[15.5px] no-underline"
+          style="box-shadow:0 18px 40px -16px rgba(29,63,114,0.4);"
+        >
+          Explorar servicios
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+            <path d="M5 12 H19 M13 6 L19 12 L13 18" stroke="white" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </a>
+        <a
+          href="#contacto"
+          data-scroll="contacto"
+          class="btn-ghost inline-flex items-center gap-[10px] cursor-pointer py-[18px] px-7 rounded-[14px] bg-transparent border text-ink font-body font-semibold text-[15.5px] no-underline"
+          style="border-color:rgba(26,28,34,0.22);"
+        >
+          Solicitar asesoría
+        </a>
+      </div>
+
+      <div class="hero-stats flex gap-8 lg:gap-[46px] mt-14 flex-wrap">
+        {
+          heroStats.map((s) => (
+            <div>
+              <div
+                class="font-display text-[40px] font-extrabold leading-none"
+                style={`color:${s.accent ? "#C8D72B" : "#1A1C22"};`}
+              >
+                {s.value !== null ? (
+                  <span data-count={s.value} data-suffix={s.suffix}>0{s.suffix}</span>
+                ) : (
+                  s.plain
+                )}
+              </div>
+              <div class="text-[12.5px] mt-2 leading-[1.4] max-w-[130px] font-medium" style="color:#1A1C22;">
+                {s.label}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- photo -->
+    <div class="hero-photo relative h-[440px] lg:h-[560px] flex items-center justify-center order-first lg:order-none">
+      <div
+        class="absolute right-[6px] top-[34px] bottom-[34px] w-[300px] lg:w-[330px] bg-blue"
+        style="border-radius:200px 200px 22px 22px;"
+      >
+      </div>
+      <div
+        data-tilt
+        class="relative w-[330px] lg:w-[380px] h-[420px] lg:h-[490px]"
+        style="transform-style:preserve-3d; transition:transform .15s ease-out;"
+      >
+        <div
+          class="absolute inset-0 overflow-hidden border border-black/[0.08]"
+          style="border-radius:200px 200px 22px 22px; box-shadow:0 50px 100px -34px rgba(29,63,114,0.25);"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=760&h=980&q=80"
+            alt="Profesional de Validum"
+            loading="eager"
+            class="w-full h-full object-cover block"
+          />
+        </div>
+
+        {/* floating chips */}
+        {
+          heroChips.map((c) => (
+            <div
+              data-parallax
+              data-depth={c.depth}
+              class="absolute flex items-center gap-[11px] py-[14px] px-[17px] rounded-2xl bg-white"
+              style={`box-shadow:0 24px 50px -20px rgba(29,63,114,0.2); animation:floaty ${c.float} ease-in-out infinite; ${c.top ? `top:${c.top};` : ""}${c.bottom ? `bottom:${c.bottom};` : ""}${c.left ? `left:${c.left};` : ""}${c.right ? `right:${c.right};` : ""}`}
+            >
+              <div
+                class="w-9 h-9 rounded-[10px] grid place-items-center font-display font-extrabold text-[10.5px]"
+                style={`background:${c.iconBg}; color:#fff;`}
+                set:html={c.icon ? c.icon : c.abbr}
+              />
+              <div>
+                <div class="font-display text-[13.5px] font-bold text-ink">{c.title}</div>
+                <div class="text-[10.5px] font-semibold" style="color:#6B7280;">{c.sub}</div>
+              </div>
+            </div>
+          ))
+        }
+
+        <div
+          data-parallax
+          data-depth="44"
+          class="absolute top-[47%] right-[-40px] py-3 px-4 rounded-[14px]"
+          style="background:#1D3F72; box-shadow:0 20px 44px -18px rgba(29,63,114,0.35); animation:floaty 5s ease-in-out infinite;"
+        >
+          <div class="text-[9.5px] tracking-[1px] font-semibold" style="color:#fff;">
+            EPS · ARL · PENSIÓN · CCF
+          </div>
+          <div class="font-display text-[14px] font-bold text-white">Afiliaciones</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // pause floaty animations when hero is off-screen
+  const hero = document.querySelector('[data-hero]');
+  if (hero) {
+    const floatyEls = hero.querySelectorAll<HTMLElement>('[style*="floaty"]');
+    new IntersectionObserver((entries) => {
+      const state = entries[0].isIntersecting ? 'running' : 'paused';
+      floatyEls.forEach(el => { el.style.animationPlayState = state; });
+    }, { threshold: 0 }).observe(hero);
+  }
+</script>

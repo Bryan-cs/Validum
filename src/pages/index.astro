@@ -1,0 +1,36 @@
+---
+import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
+import Hero from "../components/Hero.astro";
+import Marquee from "../components/Marquee.astro";
+import About from "../components/About.astro";
+import Services from "../components/Services.astro";
+import Ecosystem from "../components/Ecosystem.astro";
+import Values from "../components/Values.astro";
+import Benefits from "../components/Benefits.astro";
+import Audience from "../components/Audience.astro";
+import KeyMessage from "../components/KeyMessage.astro";
+import Contact from "../components/Contact.astro";
+import Whatsapp from "../components/Whatsapp.astro";
+---
+
+<Base>
+  <Nav />
+  <main id="contenido" class="w-full overflow-x-hidden bg-paper">
+    <Hero />
+    <Marquee />
+    <About />
+    <Services />
+    <Ecosystem />
+    <Values />
+    <Benefits />
+    <Audience />
+    <KeyMessage />
+    <Contact />
+  </main>
+  <Whatsapp />
+</Base>
+
+<script>
+  import "../scripts/main.ts";
+</script>

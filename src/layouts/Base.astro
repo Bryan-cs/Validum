@@ -1,0 +1,80 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Validum | Outsourcing en seguridad social, nómina y facturación electrónica",
+  description = "Grupo Empresarial Validum S.A.S. — outsourcing administrativo en Colombia: afiliaciones a seguridad social (EPS, ARL, pensión, caja), administración de nómina, novedades laborales y facturación electrónica DIAN.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#F8F7F4" />
+
+    <link rel="canonical" href="https://validum.com.co/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://validum.com.co/" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://validum.com.co/og-image.jpg" />
+    <meta property="og:locale" content="es_CO" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://validum.com.co/og-image.jpg" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesque:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Structured data -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        name: "Grupo Empresarial Validum S.A.S.",
+        description,
+        areaServed: "Colombia",
+        email: "contacto@validum.com.co",
+        knowsAbout: [
+          "Seguridad social",
+          "Nómina electrónica",
+          "Facturación electrónica DIAN",
+          "Outsourcing administrativo",
+        ],
+      })}
+    />
+  </head>
+  <body>
+    <a
+      href="#contenido"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[300] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-blue focus:text-ink focus:font-bold focus:no-underline"
+    >
+      Saltar al contenido
+    </a>
+    <div class="grain"></div>
+    <slot />
+  </body>
+</html>
