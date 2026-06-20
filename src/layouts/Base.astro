@@ -10,6 +10,10 @@ const {
   title = "Validum | Outsourcing en seguridad social, nómina y facturación electrónica",
   description = "Grupo Empresarial Validum S.A.S. — outsourcing administrativo en Colombia: afiliaciones a seguridad social (EPS, ARL, pensión, caja), administración de nómina, novedades laborales y facturación electrónica DIAN.",
 } = Astro.props;
+
+const siteOrigin = "https://validum.com.co";
+const ogImage = `${siteOrigin}/og-image.jpg`;
+const heroLCP = "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=760&h=980&q=80";
 ---
 
 <!doctype html>
@@ -24,29 +28,47 @@ const {
     <meta name="description" content={description} />
     <meta name="theme-color" content="#F8F7F4" />
 
-    <link rel="canonical" href="https://validum.com.co/" />
+    <!-- LCP preload -->
+    <link rel="preload" as="image" href={heroLCP} fetchpriority="high" />
+
+    <link rel="canonical" href={`${siteOrigin}/`} />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://validum.com.co/" />
+    <meta property="og:url" content={`${siteOrigin}/`} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="https://validum.com.co/og-image.jpg" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="es_CO" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="https://validum.com.co/og-image.jpg" />
+    <meta name="twitter:image" content={ogImage} />
 
-    <!-- Fonts -->
+    <!-- Fonts: non-blocking -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesque:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesque:wght@400;500;600;700&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesque:wght@400;500;600;700&display=swap"
+      />
+    </noscript>
 
     <!-- Structured data -->
     <script
@@ -55,15 +77,26 @@ const {
         "@context": "https://schema.org",
         "@type": "ProfessionalService",
         name: "Grupo Empresarial Validum S.A.S.",
+        url: siteOrigin,
         description,
         areaServed: "Colombia",
         email: "contacto@validum.com.co",
+        telephone: "+57-300-000-0000",
+        address: {
+          "@type": "PostalAddress",
+          addressCountry: "CO",
+          addressRegion: "Colombia",
+        },
         knowsAbout: [
           "Seguridad social",
           "Nómina electrónica",
           "Facturación electrónica DIAN",
           "Outsourcing administrativo",
+          "Afiliaciones EPS",
+          "Afiliaciones ARL",
+          "Administración de nómina Colombia",
         ],
+        sameAs: [],
       })}
     />
   </head>
