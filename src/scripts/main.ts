@@ -156,7 +156,7 @@ function initForm() {
     const waMsg = encodeURIComponent(
       `Hola Validum${empresa ? `, soy ${empresa}` : ''} y quiero información sobre outsourcing administrativo.`
     );
-    window.open(`https://wa.me/573000000000?text=${waMsg}`, "_blank", "noopener,noreferrer");
+    window.open(`https://wa.me/573185301171?text=${waMsg}`, "_blank", "noopener,noreferrer");
     if (status) {
       status.textContent = "¡Gracias! Abriendo WhatsApp…";
       status.classList.remove("hidden");
