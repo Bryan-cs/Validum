@@ -28,8 +28,8 @@ const heroLCP = "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=
     <meta name="description" content={description} />
     <meta name="theme-color" content="#F8F7F4" />
 
-    <!-- LCP preload -->
-    <link rel="preload" as="image" href={heroLCP} fetchpriority="high" />
+    <!-- LCP preload: crossorigin needed for Brave/Firefox CORS on external CDN -->
+    <link rel="preload" as="image" href={heroLCP} fetchpriority="high" crossorigin="anonymous" />
 
     <link rel="canonical" href={`${siteOrigin}/`} />
 
@@ -55,18 +55,18 @@ const heroLCP = "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=
     <link
       rel="preload"
       as="style"
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesque:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesque:wght@400;500;600;700&display=optional"
     />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesque:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesque:wght@400;500;600;700&display=optional"
       media="print"
       onload="this.media='all'"
     />
     <noscript>
       <link
         rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesque:wght@400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesque:wght@400;500;600;700&display=optional"
       />
     </noscript>
 
