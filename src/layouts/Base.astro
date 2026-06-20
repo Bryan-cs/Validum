@@ -13,7 +13,6 @@ const {
 
 const siteOrigin = "https://validum.com.co";
 const ogImage = `${siteOrigin}/og-image.jpg`;
-const heroLCP = "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=760&h=980&q=80";
 ---
 
 <!doctype html>
@@ -28,8 +27,8 @@ const heroLCP = "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=
     <meta name="description" content={description} />
     <meta name="theme-color" content="#F8F7F4" />
 
-    <!-- LCP preload: crossorigin needed for Brave/Firefox CORS on external CDN -->
-    <link rel="preload" as="image" href={heroLCP} fetchpriority="high" crossorigin="anonymous" />
+    <!-- LCP preload: imagen local, sin CDN externo -->
+    <link rel="preload" as="image" href="/hero.jpg" fetchpriority="high" />
 
     <link rel="canonical" href={`${siteOrigin}/`} />
 
@@ -48,27 +47,6 @@ const heroLCP = "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
-
-    <!-- Fonts: non-blocking -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesque:wght@400;500;600;700&display=optional"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesque:wght@400;500;600;700&display=optional"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesque:wght@400;500;600;700&display=optional"
-      />
-    </noscript>
 
     <!-- Structured data -->
     <script
