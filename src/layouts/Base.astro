@@ -7,8 +7,8 @@ interface Props {
 }
 
 const {
-  title = "Validum | Outsourcing en seguridad social, nómina y facturación electrónica",
-  description = "Grupo Empresarial Validum S.A.S. — outsourcing administrativo en Colombia: afiliaciones a seguridad social (EPS, ARL, pensión, caja), administración de nómina, novedades laborales y facturación electrónica DIAN.",
+  title = "Outsourcing de nómina y seguridad social en Colombia | Validum",
+  description = "Outsourcing administrativo en Colombia: afiliaciones a EPS, ARL, pensión y caja, administración de nómina electrónica, novedades laborales y facturación electrónica DIAN. Cumplimiento garantizado.",
 } = Astro.props;
 
 const siteOrigin = "https://validum.com.co";
@@ -26,6 +26,13 @@ const ogImage = `${siteOrigin}/og-image.jpg`;
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="theme-color" content="#F8F7F4" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta
+      name="keywords"
+      content="outsourcing administrativo, outsourcing de nómina, seguridad social Colombia, afiliaciones EPS ARL pensión caja, facturación electrónica DIAN, nómina electrónica, novedades laborales"
+    />
+    <meta name="geo.region" content="CO" />
+    <meta name="geo.placename" content="Colombia" />
 
     <!-- LCP preload: imagen local, sin CDN externo -->
     <link rel="preload" as="image" href="/hero.jpg" fetchpriority="high" />
@@ -54,16 +61,36 @@ const ogImage = `${siteOrigin}/og-image.jpg`;
       set:html={JSON.stringify({
         "@context": "https://schema.org",
         "@type": "ProfessionalService",
+        "@id": `${siteOrigin}/#organization`,
         name: "Grupo Empresarial Validum S.A.S.",
+        alternateName: "Validum",
         url: siteOrigin,
+        image: ogImage,
         description,
-        areaServed: "Colombia",
+        priceRange: "$$",
+        areaServed: {
+          "@type": "Country",
+          name: "Colombia",
+        },
         email: "contacto@validum.com.co",
-        telephone: "+57-300-000-0000",
+        telephone: "+573185301171",
         address: {
           "@type": "PostalAddress",
           addressCountry: "CO",
           addressRegion: "Colombia",
+        },
+        contactPoint: {
+          "@type": "ContactPoint",
+          telephone: "+573185301171",
+          contactType: "customer service",
+          availableLanguage: "Spanish",
+          areaServed: "CO",
+        },
+        openingHoursSpecification: {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          opens: "08:00",
+          closes: "18:00",
         },
         knowsAbout: [
           "Seguridad social",
@@ -74,6 +101,20 @@ const ogImage = `${siteOrigin}/og-image.jpg`;
           "Afiliaciones ARL",
           "Administración de nómina Colombia",
         ],
+        hasOfferCatalog: {
+          "@type": "OfferCatalog",
+          name: "Servicios de outsourcing administrativo",
+          itemListElement: [
+            "Afiliaciones a seguridad social (EPS, ARL, pensión y caja de compensación)",
+            "Radicación de novedades laborales",
+            "Administración de nómina",
+            "Implementación de facturación electrónica DIAN",
+            "Gestión de documentos electrónicos",
+          ].map((s) => ({
+            "@type": "Offer",
+            itemOffered: { "@type": "Service", name: s },
+          })),
+        },
         sameAs: [],
       })}
     />

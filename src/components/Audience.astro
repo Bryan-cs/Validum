@@ -21,9 +21,9 @@ import { publico } from "../data/content";
           style="border-color:#E5E7EB; box-shadow:0 18px 44px -34px rgba(27,42,49,0.3);"
         >
           <div class="relative h-[280px] overflow-hidden">
-            <img src={p.img} alt={p.alt} loading="lazy" class="pimg w-full h-full object-cover block" />
+            <img src={p.img} alt={p.alt} width="700" height="560" loading="lazy" decoding="async" class="pimg w-full h-full object-cover block" />
             <div class="pimg-overlay absolute inset-0 flex items-end p-5" style="background:linear-gradient(to top,rgba(17,19,23,0.82) 0%,transparent 60%); opacity:0; transition:opacity 0.35s;">
-              <span class="font-display text-[12px] font-bold text-white tracking-[1.5px] uppercase">{p.alt}</span>
+              <span class="font-display text-[12px] font-bold text-white tracking-[1.5px] uppercase">{p.tag}</span>
             </div>
           </div>
           <div class="p-[30px]">

@@ -72,9 +72,9 @@ export const beneficios = [
 ];
 
 export const publico = [
-  { n: "01", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=700&h=560&q=80", alt: "Empresas", title: "Empresas de cualquier tamaño", desc: "De cualquier sector que buscan eficiencia operativa y cumplimiento normativo garantizado." },
-  { n: "02", img: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=700&h=560&q=80", alt: "Independientes con empleados", title: "Independientes con empleados", desc: "Que requieren soluciones administrativas confiables sin montar un área interna." },
-  { n: "03", img: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=700&h=560&q=80", alt: "Organizaciones en crecimiento", title: "Organizaciones en crecimiento", desc: "Que desean externalizar procesos para enfocarse en su core business." },
+  { n: "01", img: "/audience-1.jpg", tag: "Empresas", alt: "Equipo de empresa que terceriza su nómina y seguridad social con Validum", title: "Empresas de cualquier tamaño", desc: "De cualquier sector que buscan eficiencia operativa y cumplimiento normativo garantizado." },
+  { n: "02", img: "/audience-2.jpg", tag: "Independientes", alt: "Independiente con empleados gestionando afiliaciones y aportes", title: "Independientes con empleados", desc: "Que requieren soluciones administrativas confiables sin montar un área interna." },
+  { n: "03", img: "/audience-3.jpg", tag: "Organizaciones", alt: "Organización en crecimiento externalizando procesos administrativos", title: "Organizaciones en crecimiento", desc: "Que desean externalizar procesos para enfocarse en su core business." },
 ];
 
 export const contactInfo = [
